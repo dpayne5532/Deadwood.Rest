@@ -28,6 +28,13 @@ var quoteBox = [
   {"quote": "Every bully I've ever met can't shut his fucking mouth. Except when he's afraid.", "by": "Seth Bullock"},
   {"quote": "You pie-faced cocksucker, get in here and account for your insult.", "by": "Seth Bullock"},
   {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
+  {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
+  {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
+
+  {"quote": "Fuck every fuckin' one of you. I wish I was a fuckin' tree.", "by": "Trixie"},
+  {"quote": "The bank's founder and president, Chief Officer as well, of air-headed smugness and headlong plunges unawares into the fucking abyss.", "by": "Trixie"},
+
+
 
 ]
 
