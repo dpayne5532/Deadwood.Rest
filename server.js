@@ -5,12 +5,12 @@ const PORT = process.env.PORT || 3000
 var quoteBox = [
 
   {"quote": "I drink what I'm able. If that comes too much, that's the day's affair and the liquor's.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
-  {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane"},
-  {"quote": "If I had that mug on me I believe I’d cut down getting told how butt f***in' ugly I was by not staring at strangers.", "by": "Calamity Jane"},
-  {"quote": "I don't drink where I'm the only fucking one with balls.", "by": "Calamity Jane"},
-  {"quote": "I won't be a drunk where he's buried, and I can't stay sober.", "by": "Calamity Jane"},
-  {"quote": "Every day takes figuring out all over again how to fucking live.", "by": "Calamity Jane"},
-  {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane"},
+  {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
+  {"quote": "If I had that mug on me I believe I’d cut down getting told how butt f***in' ugly I was by not staring at strangers.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
+  {"quote": "I don't drink where I'm the only fucking one with balls.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
+  {"quote": "I won't be a drunk where he's buried, and I can't stay sober.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
+  {"quote": "Every day takes figuring out all over again how to fucking live.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
+  {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
 
   {"quote": "Welcome to fucking Deadwood!", "by": "Al Swearengen"},
   {"quote": "Don't forget to kill Tim.", "by": "Al Swearengen"},
