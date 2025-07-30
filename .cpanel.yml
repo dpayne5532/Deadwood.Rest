@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export NODE_ENV=production
+    - /opt/alt/alt-nodejs16/root/usr/bin/npm install
+    - /opt/alt/alt-nodejs16/root/usr/bin/npm run build || true
