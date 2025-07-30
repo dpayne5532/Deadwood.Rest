@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const PORT = process.env.PORT || 3000
 
 var quoteBox = [
 
@@ -74,6 +75,6 @@ app.get('/bullock', (req, res) => {
 
 
 
-var PORT = process.env.PORT || 3010
+
 
 app.listen(PORT, () => console.log(`-----=====||||    Server Listening On PORT ${PORT}    ||||=====-----`))
