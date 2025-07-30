@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3000
 
 var quoteBox = [
 
-  {"quote": "I drink what I'm able. If that comes too much, that's the day's affair and the liquor's.", "by": "Calamity Jane"},
+  {"quote": "I drink what I'm able. If that comes too much, that's the day's affair and the liquor's.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
   {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane"},
   {"quote": "If I had that mug on me I believe I’d cut down getting told how butt f***in' ugly I was by not staring at strangers.", "by": "Calamity Jane"},
   {"quote": "I don't drink where I'm the only fucking one with balls.", "by": "Calamity Jane"},
