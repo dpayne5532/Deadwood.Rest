@@ -12,8 +12,8 @@ var quoteBox = [
   {"quote": "Every day takes figuring out all over again how to fucking live.", "by": "Calamity Jane", "for":"Kayla"},
   {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane", "for":"Kayla"},
 
-  {"quote": "Welcome to fucking Deadwood!", "by": "Al Swearengen"},
-  {"quote": "Don't forget to kill Tim.", "by": "Al Swearengen"},
+  {"quote": "Welcome to fucking Deadwood!", "by": "Al Swearengen", "for":"Kayla"},
+  {"quote": "Don't forget to kill Tim.", "by": "Al Swearengen", "for":"Kayla"},
   {"quote": "You see me empty, sir, do not pause and inquire. Simply assume and refill.", "by": "Al Swearengen", "for":"Kayla"},
   {"quote": "God rest the souls of that poor family… and pussy's half price for the next 15 minutes.", "by": "Al Swearengen", "for":"Kayla"},
   {"quote": "In life you have to do a lot of things you don’t f**king want to do. Many times, that’s what the f**k life is… one vile f**king task after another.", "by": "Al Swearengen", "for":"Kayla"},
