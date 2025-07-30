@@ -10,7 +10,7 @@ var quoteBox = [
   {"quote": "I don't drink where I'm the only fucking one with balls.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
   {"quote": "I won't be a drunk where he's buried, and I can't stay sober.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
   {"quote": "Every day takes figuring out all over again how to fucking live.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
-  {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane", "dedicatedTo":"Kayla"},
+  {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane", "dedicatedTo":"Dan"},
 
   {"quote": "Welcome to fucking Deadwood!", "by": "Al Swearengen"},
   {"quote": "Don't forget to kill Tim.", "by": "Al Swearengen"},
