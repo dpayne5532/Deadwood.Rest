@@ -93,6 +93,13 @@ app.get('/joanie', (req, res) => {
   res.json(result)
 })
 
+app.get('/trixie', (req, res) => {
+  var newBox = quoteBox.filter(q => q.by === 'Trixie')
+  var ind = Math.floor(Math.random() * newBox.length)
+  var result = newBox[ind]
+  result.for = "Kayla"
+  res.json(result)
+})
 
 
 
