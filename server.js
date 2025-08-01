@@ -1,3 +1,5 @@
+const fs = require('fs')
+const path = require('path')
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -54,7 +56,23 @@ var quoteBox = [
 
 ]
 
-// app.use(express.json)
+// Simple request logger to access.log
+app.use((req, res, next) => {
+  const start = Date.now();
+
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${req.ip} (${duration}ms)\n`;
+    
+    fs.appendFile(path.join(__dirname, 'access.log'), logEntry, err => {
+      if (err) console.error('Logging failed:', err);
+    });
+  });
+
+  next();
+});
+
+
 
 app.get('/', (req, res) => {
   var ind = Math.floor(Math.random() * quoteBox.length); 
