@@ -41,14 +41,13 @@ var quoteBox = [
   {"quote": "Every bully I've ever met can't shut his fucking mouth. Except when he's afraid.", "by": "Seth Bullock"},
   {"quote": "You pie-faced cocksucker, get in here and account for your insult.", "by": "Seth Bullock"},
   {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
-  {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
-  {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
+
+
+
+  {"quote": "Sure you wanna quit playing, Jack? The game's always between you and getting called a cunt.", "by": "Wild Bill Hickok"},
+  {"quote": "That dropped eye of yours looks like the hood on a cunt to me, Jack. When you talk, your mouth looks like a cunt moving.", "by": "Wild Bill Hickok"},
 
   
-  
-
-
-
   {"quote": "San Francisco Cocksucker!", "by": "Mr. Wu"},
   {"quote": "My bicycle masters boardwalk and quagmire with aplomb. Those that doubt me... suck cock by choice.", "by": "Tom Nuttall"},
 
