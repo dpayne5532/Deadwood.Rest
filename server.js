@@ -74,10 +74,12 @@ app.use((req, res, next) => {
 
 
 
+
 app.get('/', (req, res) => {
   var ind = Math.floor(Math.random() * quoteBox.length); 
   var result = quoteBox[ind];
   result.for = "Kayla";
+  console.log("root request")
   res.json(result);
 })
 
@@ -86,6 +88,7 @@ app.get('/al', (req, res) => {
   var ind = Math.floor(Math.random() * newBox.length)
   var result = newBox[ind]
   result.for = "Kayla"
+  console.log("Al!")
   res.json(result)
 })
 
@@ -94,6 +97,7 @@ app.get('/jane', (req, res) => {
   var ind = Math.floor(Math.random() * newBox.length)
   var result = newBox[ind]
   result.for = "Kayla"
+  console.log("Jane!")
   res.json(result)
 })
 
@@ -102,6 +106,7 @@ app.get('/bullock', (req, res) => {
   var ind = Math.floor(Math.random() * newBox.length)
   var result = newBox[ind]
   result.for = "Kayla"
+  console.log("Bullock!")
   res.json(result)
 })
 
@@ -111,6 +116,7 @@ app.get('/joanie', (req, res) => {
   var ind = Math.floor(Math.random() * newBox.length)
   var result = newBox[ind]
   result.for = "Kayla"
+  console.log("Joanie!")
   res.json(result)
 })
 
@@ -119,6 +125,7 @@ app.get('/trixie', (req, res) => {
   var ind = Math.floor(Math.random() * newBox.length)
   var result = newBox[ind]
   result.for = "Kayla"
+  console.log("Trixie!")
   res.json(result)
 })
 
