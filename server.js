@@ -33,6 +33,9 @@ var quoteBox = [
   {"quote": "Bloodletting on my premises that I ain't approved I take as a fucking affront. It puts me off my feed.", "by": "Al Swearengen"},
   {"quote": "Yeah, the cut throats and the pigs. But who wants all that blood spilled, judge, huh? Isn't there a simpler way of not pissing off the big vipers?", "by": "Al Swearengen"},
   {"quote": "The direction of my thoughts–with the sustained fucking stupidity that you’re exhibiting, I hesitate to voice them–is that you might want to train for Phil’s former position.", "by": "Al Swearengen"},
+  {"quote": "Pain or damage don't end the world. Or despair or fucking beatings. The world ends when you're dead. Until then, you got more punishment in store. Stand it like a man... and give some back.", "by": "Al Swearengen"},
+
+
 
   {"quote": "No law either against me breaking your fucking jaw if you don't quit it.", "by": "Seth Bullock"},
   {"quote": "Every bully I've ever met can't shut his fucking mouth. Except when he's afraid.", "by": "Seth Bullock"},
@@ -40,6 +43,15 @@ var quoteBox = [
   {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
   {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
   {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
+
+  
+  
+
+
+
+  {"quote": "San Francisco Cocksucker!", "by": "Mr. Wu"},
+  {"quote": "My bicycle masters boardwalk and quagmire with aplomb. Those that doubt me... suck cock by choice.", "by": "Tom Nuttall"},
+
 
   {"quote": "Fuck every fuckin' one of you. I wish I was a fuckin' tree.", "by": "Trixie"},
   {"quote": "The bank's founder and president, Chief Officer as well, of air-headed smugness and headlong plunges unawares into the fucking abyss.", "by": "Trixie"},
