@@ -129,7 +129,23 @@ app.get('/trixie', (req, res) => {
   res.json(result)
 })
 
+app.get('/wu', (req, res) => {
+  var newBox = quoteBox.filter(q => q.by === 'Mr. Wu')
+  var ind = Math.floor(Math.random() * newBox.length)
+  var result = newBox[ind]
+  result.for = "Kayla"
+  console.log("Wu!")
+  res.json(result)
+})
 
+app.get('/wildbill', (req, res) => {
+  var newBox = quoteBox.filter(q => q.by === 'Wild Bill Hickok')
+  var ind = Math.floor(Math.random() * newBox.length)
+  var result = newBox[ind]
+  result.for = "Kayla"
+  console.log("Wild Bill!")
+  res.json(result)
+})
 
 
 
