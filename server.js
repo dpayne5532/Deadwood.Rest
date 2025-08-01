@@ -15,12 +15,6 @@ var quoteBox = [
   {"quote": "Yeah, I'm gonna be Queen Hooker. You're a keen fucking student of the human scene, Charlie!", "by": "Calamity Jane"},
   {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane"},
 
-
-
-
-
-
-
   {"quote": "Welcome to fucking Deadwood!", "by": "Al Swearengen"},
   {"quote": "Don't forget to kill Tim.", "by": "Al Swearengen"},
   {"quote": "You see me empty, sir, do not pause and inquire. Simply assume and refill.", "by": "Al Swearengen"},
@@ -35,29 +29,27 @@ var quoteBox = [
   {"quote": "The direction of my thoughts–with the sustained fucking stupidity that you’re exhibiting, I hesitate to voice them–is that you might want to train for Phil’s former position.", "by": "Al Swearengen"},
   {"quote": "Pain or damage don't end the world. Or despair or fucking beatings. The world ends when you're dead. Until then, you got more punishment in store. Stand it like a man... and give some back.", "by": "Al Swearengen"},
 
-
-
   {"quote": "No law either against me breaking your fucking jaw if you don't quit it.", "by": "Seth Bullock"},
   {"quote": "Every bully I've ever met can't shut his fucking mouth. Except when he's afraid.", "by": "Seth Bullock"},
   {"quote": "You pie-faced cocksucker, get in here and account for your insult.", "by": "Seth Bullock"},
   {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
-
-
+  {"quote": "Any more gunplay gets answered. You call the law in Sampson, you don't get to call it off just cause you're liquored up and popular on payday.", "by": "Seth Bullock"},
 
   {"quote": "Sure you wanna quit playing, Jack? The game's always between you and getting called a cunt.", "by": "Wild Bill Hickok"},
   {"quote": "That dropped eye of yours looks like the hood on a cunt to me, Jack. When you talk, your mouth looks like a cunt moving.", "by": "Wild Bill Hickok"},
-
+  {"quote": "Some goddamn point a man's due to stop arguing with his-self and feeling twice the goddamn fool he knows he is 'cause he can't be something he tries to be every goddamn day without once getting to dinnertime and fucking it up. I don't want to fight it anymore, understand me Charlie? And I don't want you pissing in my ear about it. Can you let me go to hell the way I want to?.", "by": "Wild Bill Hickok"},
   
   {"quote": "San Francisco Cocksucker!", "by": "Mr. Wu"},
+
+  {"quote": "Sayin' questions in that tone and pointin' your finger at me will get you told to fuck yourself.", "by": "Cy Tolliver"},
+
   {"quote": "My bicycle masters boardwalk and quagmire with aplomb. Those that doubt me... suck cock by choice.", "by": "Tom Nuttall"},
 
-
   {"quote": "Fuck every fuckin' one of you. I wish I was a fuckin' tree.", "by": "Trixie"},
+  {"quote": "Tread lightly who lives in hope of pussy.", "by": "Trixie"},
   {"quote": "The bank's founder and president, Chief Officer as well, of air-headed smugness and headlong plunges unawares into the fucking abyss.", "by": "Trixie"},
 
   {"quote": "Oh I speak French...", "by": "Joanie"}
-
-
 
 
 ]
