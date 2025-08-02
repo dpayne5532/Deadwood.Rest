@@ -57,22 +57,20 @@ var quoteBox = [
 
 ]
 
-// Simple request logger to access.log
+// --- Middleware: Request Logger ---
 app.use((req, res, next) => {
   const start = Date.now();
-
   res.on('finish', () => {
     const duration = Date.now() - start;
     const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${req.ip} (${duration}ms)\n`;
-    
     fs.appendFile(path.join(__dirname, 'access.log'), logEntry, err => {
       if (err) console.error('Logging failed:', err);
     });
   });
-
   next();
 });
 
+// --- Helper: Action Logger ---
 function logAction(message) {
   const logLine = `${new Date().toISOString()} - ${message}\n`;
   fs.appendFile(path.join(__dirname, 'access.log'), logLine, err => {
@@ -80,83 +78,73 @@ function logAction(message) {
   });
 }
 
-
-
-
-
+// --- Routes ---
 app.get('/', (req, res) => {
-  var ind = Math.floor(Math.random() * quoteBox.length); 
-  var result = quoteBox[ind];
+  const ind = Math.floor(Math.random() * quoteBox.length);
+  const result = quoteBox[ind];
   result.for = "Kayla";
-  console.log("root request")
+  logAction("Endpoint hit: /");
   res.json(result);
-})
+});
 
 app.get('/al', (req, res) => {
-  var newBox = quoteBox.filter(q => q.by === 'Al Swearengen')
-  var ind = Math.floor(Math.random() * newBox.length)
-  var result = newBox[ind]
-  result.for = "Kayla"
-  console.log("Al!")
-  res.json(result)
-})
+  const filtered = quoteBox.filter(q => q.by === 'Al Swearengen');
+  const result = filtered[Math.floor(Math.random() * filtered.length)];
+  result.for = "Kayla";
+  logAction("Endpoint hit: /al");
+  res.json(result);
+});
 
 app.get('/jane', (req, res) => {
-  var newBox = quoteBox.filter(q => q.by === 'Calamity Jane')
-  var ind = Math.floor(Math.random() * newBox.length)
-  var result = newBox[ind]
-  result.for = "Kayla"
-  console.log("Jane!")
-  res.json(result)
-})
+  const filtered = quoteBox.filter(q => q.by === 'Calamity Jane');
+  const result = filtered[Math.floor(Math.random() * filtered.length)];
+  result.for = "Kayla";
+  logAction("Endpoint hit: /jane");
+  res.json(result);
+});
 
 app.get('/bullock', (req, res) => {
-  var newBox = quoteBox.filter(q => q.by === 'Seth Bullock')
-  var ind = Math.floor(Math.random() * newBox.length)
-  var result = newBox[ind]
-  result.for = "Kayla"
-  console.log("Bullock!")
-  res.json(result)
-})
-
+  const filtered = quoteBox.filter(q => q.by === 'Seth Bullock');
+  const result = filtered[Math.floor(Math.random() * filtered.length)];
+  result.for = "Kayla";
+  logAction("Endpoint hit: /bullock");
+  res.json(result);
+});
 
 app.get('/joanie', (req, res) => {
-  var newBox = quoteBox.filter(q => q.by === 'Joanie')
-  var ind = Math.floor(Math.random() * newBox.length)
-  var result = newBox[ind]
-  result.for = "Kayla"
-  console.log("Joanie!")
-  res.json(result)
-})
+  const filtered = quoteBox.filter(q => q.by === 'Joanie');
+  const result = filtered[Math.floor(Math.random() * filtered.length)];
+  result.for = "Kayla";
+  logAction("Endpoint hit: /joanie");
+  res.json(result);
+});
 
 app.get('/trixie', (req, res) => {
-  var newBox = quoteBox.filter(q => q.by === 'Trixie')
-  var ind = Math.floor(Math.random() * newBox.length)
-  var result = newBox[ind]
-  result.for = "Kayla"
-  console.log("Trixie!")
-  res.json(result)
-})
+  const filtered = quoteBox.filter(q => q.by === 'Trixie');
+  const result = filtered[Math.floor(Math.random() * filtered.length)];
+  result.for = "Kayla";
+  logAction("Endpoint hit: /trixie");
+  res.json(result);
+});
 
 app.get('/wu', (req, res) => {
-  var newBox = quoteBox.filter(q => q.by === 'Mr. Wu')
-  var ind = Math.floor(Math.random() * newBox.length)
-  var result = newBox[ind]
-  result.for = "Kayla"
-  console.log("Wu!")
-  res.json(result)
-})
+  const filtered = quoteBox.filter(q => q.by === 'Mr. Wu');
+  const result = filtered[Math.floor(Math.random() * filtered.length)];
+  result.for = "Kayla";
+  logAction("Endpoint hit: /wu");
+  res.json(result);
+});
 
 app.get('/wildbill', (req, res) => {
-  var newBox = quoteBox.filter(q => q.by === 'Wild Bill Hickok')
-  var ind = Math.floor(Math.random() * newBox.length)
-  var result = newBox[ind]
-  result.for = "Kayla"
-  console.log("Wild Bill!")
-  res.json(result)
-})
+  const filtered = quoteBox.filter(q => q.by === 'Wild Bill Hickok');
+  const result = filtered[Math.floor(Math.random() * filtered.length)];
+  result.for = "Kayla";
+  logAction("Endpoint hit: /wildbill");
+  res.json(result);
+});
 
-
-
-
-app.listen(PORT, () => console.log(`-----=====||||    Server Listening On PORT ${PORT}    ||||=====-----`))
+// --- Start Server ---
+app.listen(PORT, () => {
+  console.log(`-----=====||||    Server Listening On PORT ${PORT}    ||||=====-----`);
+  logAction(`Server started on port ${PORT}`);
+});
