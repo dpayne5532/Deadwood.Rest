@@ -57,6 +57,9 @@ var quoteBox = [
 
 ]
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 // --- Middleware: Request Logger ---
 app.use((req, res, next) => {
   const start = Date.now();
