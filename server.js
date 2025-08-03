@@ -67,9 +67,9 @@ app.use((req, res, next) => {
   res.on('finish', () => {
     const duration = Date.now() - start;
     let clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-  if (clientIp?.includes(',')) {
-    clientIp = clientIp.split(',')[0].trim();
-  }
+    if (clientIp?.includes(',')) {
+      clientIp = clientIp.split(',')[0].trim();
+    }
 
 
     const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${clientIp} (${duration}ms)\n`;
