@@ -66,7 +66,12 @@ app.use((req, res, next) => {
   const start = Date.now();
   res.on('finish', () => {
     const duration = Date.now() - start;
-    const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    let clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  if (clientIp?.includes(',')) {
+    clientIp = clientIp.split(',')[0].trim();
+  }
+
+
     const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${clientIp} (${duration}ms)\n`;
     fs.appendFile(path.join(__dirname, 'access.log'), logEntry, err => {
       if (err) console.error('Logging failed:', err);
