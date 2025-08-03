@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const app = express()
+app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000
 
 var quoteBox = [
@@ -65,7 +66,8 @@ app.use((req, res, next) => {
   const start = Date.now();
   res.on('finish', () => {
     const duration = Date.now() - start;
-    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${req.ip} (${duration}ms)\n`;
+    const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${clientIp} (${duration}ms)\n`;
     fs.appendFile(path.join(__dirname, 'access.log'), logEntry, err => {
       if (err) console.error('Logging failed:', err);
     });
