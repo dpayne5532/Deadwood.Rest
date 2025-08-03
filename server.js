@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const geoip = require('geoip-lite');
 const app = express()
 app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000
@@ -71,14 +72,23 @@ app.use((req, res, next) => {
       clientIp = clientIp.split(',')[0].trim();
     }
 
+    // Strip IPv6 localhost format if needed
+    if (clientIp?.startsWith('::ffff:')) {
+      clientIp = clientIp.replace('::ffff:', '');
+    }
 
-    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${clientIp} (${duration}ms)\n`;
+    const geo = geoip.lookup(clientIp) || {};
+    const locationInfo = `${geo.city || 'Unknown City'}, ${geo.region || 'Unknown Region'}, ${geo.country || 'Unknown Country'}`;
+
+    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${clientIp} (${locationInfo}) (${duration}ms)\n`;
+
     fs.appendFile(path.join(__dirname, 'access.log'), logEntry, err => {
       if (err) console.error('Logging failed:', err);
     });
   });
   next();
 });
+
 
 
 // --- Routes ---
