@@ -54,9 +54,10 @@ var quoteBox = [
   {"quote": "Tread lightly who lives in hope of pussy.", "by": "Trixie"},
   {"quote": "The bank's founder and president, Chief Officer as well, of air-headed smugness and headlong plunges unawares into the fucking abyss.", "by": "Trixie"},
 
-  {"quote": "Oh I speak French...", "by": "Joanie"}
+  {"quote": "Oh I speak French...", "by": "Joanie"},
 
 
+  {"quote": "Don't call me that...", "by": "Dave Payne"}
 ]
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -98,6 +99,14 @@ app.get('/', (req, res) => {
   result.for = "Kayla";
   res.json(result);
 });
+
+app.get('/tube', (req, res) => {
+  const filtered = quoteBox.filter(q => q.by === 'Dave Payne');
+  const result = filtered[Math.floor(Math.random() * filtered.length)];
+  result.for = "The Tube";
+  res.json(result);
+});
+
 
 app.get('/al', (req, res) => {
   const filtered = quoteBox.filter(q => q.by === 'Al Swearengen');
