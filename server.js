@@ -1,10 +1,13 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const cors = require('cors');
 const geoip = require('geoip-lite');
 const app = express()
-app.set('trust proxy', true);
+app.set('trust proxy', true)
 const PORT = process.env.PORT || 3000
+
+app.use(cors());
 
 var quoteBox = [
 
