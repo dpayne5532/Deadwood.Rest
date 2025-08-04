@@ -103,6 +103,13 @@ app.get('/', (req, res) => {
   res.json(result);
 });
 
+app.get('/frontend', (req, res) => {
+  const ind = Math.floor(Math.random() * quoteBox.length);
+  const result = quoteBox[ind];
+  result.for = "Kayla";
+  res.json(result);
+});
+
 app.get('/tube', (req, res) => {
   const filtered = quoteBox.filter(q => q.by === 'Dave Payne');
   const result = filtered[Math.floor(Math.random() * filtered.length)];
