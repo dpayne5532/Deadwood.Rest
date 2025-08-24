@@ -1,201 +1,183 @@
-const fs = require('fs')
-const path = require('path')
-const express = require('express')
+// server.js
+const fs = require('fs');
+const path = require('path');
+const express = require('express');
 const cors = require('cors');
 const geoip = require('geoip-lite');
-const app = express()
-app.set('trust proxy', true)
-const PORT = process.env.PORT || 3000
+
+const app = express();
+app.set('trust proxy', true);
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
-var quoteBox = [
+let pingCount = {
+  root: 0,
+  al: 0,
+  wildbill: 0,
+  bullock: 0,
+  jane: 0,
+  wu: 0,
+  trixie: 0,
+  tube: 0,
+  joanie: 0
+};
 
-  {"quote": "I drink what I'm able. If that comes too much, that's the day's affair and the liquor's.", "by": "Calamity Jane"},
-  {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane"},
-  {"quote": "If I had that mug on me I believe I’d cut down getting told how butt f***in' ugly I was by not staring at strangers.", "by": "Calamity Jane"},
-  {"quote": "I don't drink where I'm the only fucking one with balls.", "by": "Calamity Jane"},
-  {"quote": "I won't be a drunk where he's buried, and I can't stay sober.", "by": "Calamity Jane"},
-  {"quote": "Every day takes figuring out all over again how to fucking live.", "by": "Calamity Jane"},
-  {"quote": "If I had that mug on me I believe I’d cut down gettin told how butt fuckin ugly I was by not staring at strangers.", "by": "Calamity Jane"},
-  {"quote": "I dreamt last night that I was climbing a creek-bank, which is often required of a drunk...", "by": "Calamity Jane"},
-  {"quote": "Yeah, I'm gonna be Queen Hooker. You're a keen fucking student of the human scene, Charlie!", "by": "Calamity Jane"},
-  {"quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane"},
+const quoteBox = [
+  { "quote": "I drink what I'm able. If that comes too much, that's the day's affair and the liquor's.", "by": "Calamity Jane" },
+  { "quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane" },
+  { "quote": "If I had that mug on me I believe I’d cut down getting told how butt f***in' ugly I was by not staring at strangers.", "by": "Calamity Jane" },
+  { "quote": "I don't drink where I'm the only fucking one with balls.", "by": "Calamity Jane" },
+  { "quote": "I won't be a drunk where he's buried, and I can't stay sober.", "by": "Calamity Jane" },
+  { "quote": "Every day takes figuring out all over again how to fucking live.", "by": "Calamity Jane" },
+  { "quote": "If I had that mug on me I believe I’d cut down gettin told how butt fuckin ugly I was by not staring at strangers.", "by": "Calamity Jane" },
+  { "quote": "I dreamt last night that I was climbing a creek-bank, which is often required of a drunk...", "by": "Calamity Jane" },
+  { "quote": "Yeah, I'm gonna be Queen Hooker. You're a keen fucking student of the human scene, Charlie!", "by": "Calamity Jane" },
+  { "quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane" },
 
-  {"quote": "Welcome to fucking Deadwood!", "by": "Al Swearengen"},
-  {"quote": "Don't forget to kill Tim.", "by": "Al Swearengen"},
-  {"quote": "You see me empty, sir, do not pause and inquire. Simply assume and refill.", "by": "Al Swearengen"},
-  {"quote": "God rest the souls of that poor family… and pussy's half price for the next 15 minutes.", "by": "Al Swearengen"},
-  {"quote": "In life you have to do a lot of things you don’t f**king want to do. Many times, that’s what the f**k life is… one vile f**king task after another.", "by": "Al Swearengen"},
-  {"quote": "Announcing your plans is a good way to hear God laugh.", "by": "Al Swearengen"},
-  {"quote": "The world ends when you’re dead. Until then, you got more punishment in store. Stand it like a man… and give some back.", "by": "Al Swearengen"},
-  {"quote": "You can't slit the throat of everyone whose character it would improve.", "by": "Al Swearengen"},
-  {"quote": "Change ain't looking for friends. Change calls the tune we all dance to.", "by": "Al Swearengen"},
-  {"quote": "Bloodletting on my premises that I ain't approved I take as a fucking affront. It puts me off my feed.", "by": "Al Swearengen"},
-  {"quote": "Yeah, the cut throats and the pigs. But who wants all that blood spilled, judge, huh? Isn't there a simpler way of not pissing off the big vipers?", "by": "Al Swearengen"},
-  {"quote": "The direction of my thoughts–with the sustained fucking stupidity that you’re exhibiting, I hesitate to voice them–is that you might want to train for Phil’s former position.", "by": "Al Swearengen"},
-  {"quote": "Pain or damage don't end the world. Or despair or fucking beatings. The world ends when you're dead. Until then, you got more punishment in store. Stand it like a man... and give some back.", "by": "Al Swearengen"},
+  { "quote": "Welcome to fucking Deadwood!", "by": "Al Swearengen" },
+  { "quote": "Don't forget to kill Tim.", "by": "Al Swearengen" },
+  { "quote": "You see me empty, sir, do not pause and inquire. Simply assume and refill.", "by": "Al Swearengen" },
+  { "quote": "God rest the souls of that poor family… and pussy's half price for the next 15 minutes.", "by": "Al Swearengen" },
+  { "quote": "In life you have to do a lot of things you don’t f**king want to do. Many times, that’s what the f**k life is… one vile f**king task after another.", "by": "Al Swearengen" },
+  { "quote": "Announcing your plans is a good way to hear God laugh.", "by": "Al Swearengen" },
+  { "quote": "The world ends when you’re dead. Until then, you got more punishment in store. Stand it like a man… and give some back.", "by": "Al Swearengen" },
+  { "quote": "You can't slit the throat of everyone whose character it would improve.", "by": "Al Swearengen" },
+  { "quote": "Change ain't looking for friends. Change calls the tune we all dance to.", "by": "Al Swearengen" },
+  { "quote": "Bloodletting on my premises that I ain't approved I take as a fucking affront. It puts me off my feed.", "by": "Al Swearengen" },
+  { "quote": "Yeah, the cut throats and the pigs. But who wants all that blood spilled, judge, huh? Isn't there a simpler way of not pissing off the big vipers?", "by": "Al Swearengen" },
+  { "quote": "The direction of my thoughts–with the sustained fucking stupidity that you’re exhibiting, I hesitate to voice them–is that you might want to train for Phil’s former position.", "by": "Al Swearengen" },
+  { "quote": "Pain or damage don't end the world. Or despair or fucking beatings. The world ends when you're dead. Until then, you got more punishment in store. Stand it like a man... and give some back.", "by": "Al Swearengen" },
 
-  {"quote": "No law either against me breaking your fucking jaw if you don't quit it.", "by": "Seth Bullock"},
-  {"quote": "Every bully I've ever met can't shut his fucking mouth. Except when he's afraid.", "by": "Seth Bullock"},
-  {"quote": "You pie-faced cocksucker, get in here and account for your insult.", "by": "Seth Bullock"},
-  {"quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock"},
-  {"quote": "Any more gunplay gets answered. You call the law in Sampson, you don't get to call it off just cause you're liquored up and popular on payday.", "by": "Seth Bullock"},
+  { "quote": "No law either against me breaking your fucking jaw if you don't quit it.", "by": "Seth Bullock" },
+  { "quote": "Every bully I've ever met can't shut his fucking mouth. Except when he's afraid.", "by": "Seth Bullock" },
+  { "quote": "You pie-faced cocksucker, get in here and account for your insult.", "by": "Seth Bullock" },
+  { "quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock" },
+  { "quote": "Any more gunplay gets answered. You call the law in Sampson, you don't get to call it off just cause you're liquored up and popular on payday.", "by": "Seth Bullock" },
 
-  {"quote": "Sure you wanna quit playing, Jack? The game's always between you and getting called a cunt.", "by": "Wild Bill Hickok"},
-  {"quote": "That dropped eye of yours looks like the hood on a cunt to me, Jack. When you talk, your mouth looks like a cunt moving.", "by": "Wild Bill Hickok"},
-  {"quote": "Some goddamn point a man's due to stop arguing with his-self and feeling twice the goddamn fool he knows he is 'cause he can't be something he tries to be every goddamn day without once getting to dinnertime and fucking it up. I don't want to fight it anymore, understand me Charlie? And I don't want you pissing in my ear about it. Can you let me go to hell the way I want to?.", "by": "Wild Bill Hickok"},
-  
-  {"quote": "San Francisco Cocksucker!", "by": "Mr. Wu"},
-  {"quote": "Heng Dai 🤞", "by": "Mr. Wu"},
+  { "quote": "Sure you wanna quit playing, Jack? The game's always between you and getting called a cunt.", "by": "Wild Bill Hickok" },
+  { "quote": "That dropped eye of yours looks like the hood on a cunt to me, Jack. When you talk, your mouth looks like a cunt moving.", "by": "Wild Bill Hickok" },
+  { "quote": "Some goddamn point a man's due to stop arguing with his-self and feeling twice the goddamn fool he knows he is 'cause he can't be something he tries to be every goddamn day without once getting to dinnertime and fucking it up. I don't want to fight it anymore, understand me Charlie? And I don't want you pissing in my ear about it. Can you let me go to hell the way I want to?.", "by": "Wild Bill Hickok" },
 
-  {"quote": "Sayin' questions in that tone and pointin' your finger at me will get you told to fuck yourself.", "by": "Cy Tolliver"},
+  { "quote": "San Francisco Cocksucker!", "by": "Mr. Wu" },
+  { "quote": "Heng Dai 🤞", "by": "Mr. Wu" },
 
-  {"quote": "My bicycle masters boardwalk and quagmire with aplomb. Those that doubt me... suck cock by choice.", "by": "Tom Nuttall"},
+  { "quote": "Sayin' questions in that tone and pointin' your finger at me will get you told to fuck yourself.", "by": "Cy Tolliver" },
 
-  {"quote": "Fuck every fuckin' one of you. I wish I was a fuckin' tree.", "by": "Trixie"},
-  {"quote": "Tread lightly who lives in hope of pussy.", "by": "Trixie"},
-  {"quote": "The bank's founder and president, Chief Officer as well, of air-headed smugness and headlong plunges unawares into the fucking abyss.", "by": "Trixie"},
+  { "quote": "My bicycle masters boardwalk and quagmire with aplomb. Those that doubt me... suck cock by choice.", "by": "Tom Nuttall" },
 
-  {"quote": "Oh I speak French...", "by": "Joanie"},
+  { "quote": "Fuck every fuckin' one of you. I wish I was a fuckin' tree.", "by": "Trixie" },
+  { "quote": "Tread lightly who lives in hope of pussy.", "by": "Trixie" },
+  { "quote": "The bank's founder and president, Chief Officer as well, of air-headed smugness and headlong plunges unawares into the fucking abyss.", "by": "Trixie" },
 
+  { "quote": "Oh I speak French...", "by": "Joanie" },
 
-  {"quote": "Don't call me that...", "by": "Dave Payne"}
-]
+  { "quote": "Don't call me that...", "by": "Dave Payne" }
+];
 
+// Serve static assets
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// --- Middleware: Request Logger ---
+// --- Middleware: Request Logger (writes pingCount snapshot if provided by routes) ---
 app.use((req, res, next) => {
   const start = Date.now();
+
   res.on('finish', () => {
     const duration = Date.now() - start;
-    let clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    if (clientIp?.includes(',')) {
-      clientIp = clientIp.split(',')[0].trim();
-    }
 
-    // Strip IPv6 localhost format if needed
-    if (clientIp?.startsWith('::ffff:')) {
-      clientIp = clientIp.replace('::ffff:', '');
-    }
+    let clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    if (clientIp?.includes(',')) clientIp = clientIp.split(',')[0].trim();
+    if (clientIp?.startsWith('::ffff:')) clientIp = clientIp.replace('::ffff:', '');
 
     const geo = geoip.lookup(clientIp) || {};
-    const locationInfo = `${geo.city || 'Unknown City'}, ${geo.region || 'Unknown Region'}, ${geo.country || 'Unknown Country'} ${pingCount || 'No Ping Count'}`;
+    const locationInfo = `${geo.city || 'Unknown City'}, ${geo.region || 'Unknown Region'}, ${geo.country || 'Unknown Country'}`;
 
-    const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${clientIp} (${locationInfo}) (${duration}ms)\n`;
+    // Use snapshot from the route if present; otherwise include the current counts
+    const snapshot = res.locals.pingSnapshot || { ...pingCount };
+
+    const logEntry =
+      `${new Date().toISOString()} - ` +
+      `${req.method} ${req.originalUrl} ${res.statusCode} - ` +
+      `${clientIp} (${locationInfo}) (${duration}ms) - ` +
+      `pingCount: ${JSON.stringify(snapshot)}\n`;
 
     fs.appendFile(path.join(__dirname, 'access.log'), logEntry, err => {
       if (err) console.error('Logging failed:', err);
     });
   });
+
   next();
 });
 
-var pingCount = {
-  "root": 0,
-  "al": 0,
-  "wildbill": 0,
-  "bullock": 0,
-  "jane": 0,
-  "wu": 0,
-  "trixie": 0,
-  "tube": 0,
-  "joanie": 0
+// --- Helpers ---
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function respondWithQuote(res, byFilter, forWhom) {
+  const pool = byFilter ? quoteBox.filter(q => q.by === byFilter) : quoteBox;
+  const chosen = pickRandom(pool.length ? pool : quoteBox);
+  // Avoid mutating the source object
+  const result = { ...chosen, for: forWhom };
+  res.json(result);
+}
+
+function withPing(key, handler) {
+  return (req, res) => {
+    // increment
+    if (pingCount[key] === undefined) pingCount[key] = 0;
+    pingCount[key] += 1;
+
+    // expose a snapshot for the logger
+    res.locals.pingSnapshot = { ...pingCount };
+
+    // optional on-console visibility
+    console.log('pingCount:', res.locals.pingSnapshot);
+
+    handler(req, res);
+  };
 }
 
 // --- Routes ---
-app.get('/', (req, res) => {
-  pingCount.root += 1;
-  console.log(pingCount);
-  const ind = Math.floor(Math.random() * quoteBox.length);
-  const result = quoteBox[ind];
-  result.for = "Kayla";
-  res.json(result);
-});
+app.get('/', withPing('root', (req, res) => {
+  respondWithQuote(res, null, 'Kayla');
+}));
 
-app.get('/frontend', (req, res) => {
-  pingCount.root += 1;
-  console.log(pingCount);
-  const ind = Math.floor(Math.random() * quoteBox.length);
-  const result = quoteBox[ind];
-  result.for = "Kayla";
-  res.json(result);
-});
+app.get('/frontend', withPing('root', (req, res) => {
+  respondWithQuote(res, null, 'Kayla');
+}));
 
-app.get('/tube', (req, res) => {
-  pingCount.tube += 1;
-  console.log(pingCount);
-  const filtered = quoteBox.filter(q => q.by === 'Dave Payne');
-  const result = filtered[Math.floor(Math.random() * filtered.length)];
-  result.for = "The Tube";
-  res.json(result);
-});
+app.get('/tube', withPing('tube', (req, res) => {
+  respondWithQuote(res, 'Dave Payne', 'The Tube');
+}));
 
+app.get('/al', withPing('al', (req, res) => {
+  respondWithQuote(res, 'Al Swearengen', 'Kayla');
+}));
 
-app.get('/al', (req, res) => {
-  pingCount.al += 1;
-  console.log(pingCount);
-  const filtered = quoteBox.filter(q => q.by === 'Al Swearengen');
-  const result = filtered[Math.floor(Math.random() * filtered.length)];
-  result.for = "Kayla";
-  res.json(result);
-});
+app.get('/jane', withPing('jane', (req, res) => {
+  respondWithQuote(res, 'Calamity Jane', 'Kayla');
+}));
 
-app.get('/jane', (req, res) => {
-  pingCount.jane += 1;
-  console.log(pingCount);
-  const filtered = quoteBox.filter(q => q.by === 'Calamity Jane');
-  const result = filtered[Math.floor(Math.random() * filtered.length)];
-  result.for = "Kayla";
-  res.json(result);
-});
+app.get('/bullock', withPing('bullock', (req, res) => {
+  respondWithQuote(res, 'Seth Bullock', 'Kayla');
+}));
 
-app.get('/bullock', (req, res) => {
-  pingCount.bullock += 1;
-  console.log(pingCount);
-  const filtered = quoteBox.filter(q => q.by === 'Seth Bullock');
-  const result = filtered[Math.floor(Math.random() * filtered.length)];
-  result.for = "Kayla";
-  res.json(result);
-});
+app.get('/joanie', withPing('joanie', (req, res) => {
+  respondWithQuote(res, 'Joanie', 'Kayla');
+}));
 
-app.get('/joanie', (req, res) => {
-  pingCount.joanie += 1;
-  console.log(pingCount);
-  const filtered = quoteBox.filter(q => q.by === 'Joanie');
-  const result = filtered[Math.floor(Math.random() * filtered.length)];
-  result.for = "Kayla";
-  res.json(result);
-});
+app.get('/trixie', withPing('trixie', (req, res) => {
+  respondWithQuote(res, 'Trixie', 'Kayla');
+}));
 
-app.get('/trixie', (req, res) => {
-  pingCount.trixie += 1;
-  console.log(pingCount);
-  const filtered = quoteBox.filter(q => q.by === 'Trixie');
-  const result = filtered[Math.floor(Math.random() * filtered.length)];
-  result.for = "Kayla";
-  res.json(result);
-});
+app.get('/wu', withPing('wu', (req, res) => {
+  respondWithQuote(res, 'Mr. Wu', 'Kayla');
+}));
 
-app.get('/wu', (req, res) => {
-  pingCount.wu += 1;
-  console.log(pingCount);
-  const filtered = quoteBox.filter(q => q.by === 'Mr. Wu');
-  const result = filtered[Math.floor(Math.random() * filtered.length)];
-  result.for = "Kayla";
-  res.json(result);
-});
-
-app.get('/wildbill', (req, res) => {
-  pingCount.wildbill += 1;
-  console.log(pingCount);
-  const filtered = quoteBox.filter(q => q.by === 'Wild Bill Hickok');
-  const result = filtered[Math.floor(Math.random() * filtered.length)];
-  result.for = "Kayla";
-  res.json(result);
-});
+app.get('/wildbill', withPing('wildbill', (req, res) => {
+  respondWithQuote(res, 'Wild Bill Hickok', 'Kayla');
+}));
 
 // --- Start Server ---
 app.listen(PORT, () => {
