@@ -82,7 +82,7 @@ app.use((req, res, next) => {
     }
 
     const geo = geoip.lookup(clientIp) || {};
-    const locationInfo = `${geo.city || 'Unknown City'}, ${geo.region || 'Unknown Region'}, ${geo.country || 'Unknown Country'}`;
+    const locationInfo = `${geo.city || 'Unknown City'}, ${geo.region || 'Unknown Region'}, ${geo.country || 'Unknown Country'} ${pingCount || 'No Ping Count'}`;
 
     const logEntry = `${new Date().toISOString()} - ${req.method} ${req.originalUrl} ${res.statusCode} - ${clientIp} (${locationInfo}) (${duration}ms)\n`;
 
@@ -93,10 +93,22 @@ app.use((req, res, next) => {
   next();
 });
 
-
+var pingCount = {
+  "root": 0,
+  "al": 0,
+  "wildbill": 0,
+  "bullock": 0,
+  "jane": 0,
+  "wu": 0,
+  "trixie": 0,
+  "tube": 0,
+  "joanie": 0
+}
 
 // --- Routes ---
 app.get('/', (req, res) => {
+  pingCount.root += 1;
+  console.log(pingCount);
   const ind = Math.floor(Math.random() * quoteBox.length);
   const result = quoteBox[ind];
   result.for = "Kayla";
@@ -104,6 +116,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/frontend', (req, res) => {
+  pingCount.root += 1;
+  console.log(pingCount);
   const ind = Math.floor(Math.random() * quoteBox.length);
   const result = quoteBox[ind];
   result.for = "Kayla";
@@ -111,6 +125,8 @@ app.get('/frontend', (req, res) => {
 });
 
 app.get('/tube', (req, res) => {
+  pingCount.tube += 1;
+  console.log(pingCount);
   const filtered = quoteBox.filter(q => q.by === 'Dave Payne');
   const result = filtered[Math.floor(Math.random() * filtered.length)];
   result.for = "The Tube";
@@ -119,6 +135,8 @@ app.get('/tube', (req, res) => {
 
 
 app.get('/al', (req, res) => {
+  pingCount.al += 1;
+  console.log(pingCount);
   const filtered = quoteBox.filter(q => q.by === 'Al Swearengen');
   const result = filtered[Math.floor(Math.random() * filtered.length)];
   result.for = "Kayla";
@@ -126,6 +144,8 @@ app.get('/al', (req, res) => {
 });
 
 app.get('/jane', (req, res) => {
+  pingCount.jane += 1;
+  console.log(pingCount);
   const filtered = quoteBox.filter(q => q.by === 'Calamity Jane');
   const result = filtered[Math.floor(Math.random() * filtered.length)];
   result.for = "Kayla";
@@ -133,6 +153,8 @@ app.get('/jane', (req, res) => {
 });
 
 app.get('/bullock', (req, res) => {
+  pingCount.bullock += 1;
+  console.log(pingCount);
   const filtered = quoteBox.filter(q => q.by === 'Seth Bullock');
   const result = filtered[Math.floor(Math.random() * filtered.length)];
   result.for = "Kayla";
@@ -140,6 +162,8 @@ app.get('/bullock', (req, res) => {
 });
 
 app.get('/joanie', (req, res) => {
+  pingCount.joanie += 1;
+  console.log(pingCount);
   const filtered = quoteBox.filter(q => q.by === 'Joanie');
   const result = filtered[Math.floor(Math.random() * filtered.length)];
   result.for = "Kayla";
@@ -147,6 +171,8 @@ app.get('/joanie', (req, res) => {
 });
 
 app.get('/trixie', (req, res) => {
+  pingCount.trixie += 1;
+  console.log(pingCount);
   const filtered = quoteBox.filter(q => q.by === 'Trixie');
   const result = filtered[Math.floor(Math.random() * filtered.length)];
   result.for = "Kayla";
@@ -154,6 +180,8 @@ app.get('/trixie', (req, res) => {
 });
 
 app.get('/wu', (req, res) => {
+  pingCount.wu += 1;
+  console.log(pingCount);
   const filtered = quoteBox.filter(q => q.by === 'Mr. Wu');
   const result = filtered[Math.floor(Math.random() * filtered.length)];
   result.for = "Kayla";
@@ -161,6 +189,8 @@ app.get('/wu', (req, res) => {
 });
 
 app.get('/wildbill', (req, res) => {
+  pingCount.wildbill += 1;
+  console.log(pingCount);
   const filtered = quoteBox.filter(q => q.by === 'Wild Bill Hickok');
   const result = filtered[Math.floor(Math.random() * filtered.length)];
   result.for = "Kayla";
