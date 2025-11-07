@@ -70,7 +70,7 @@ const quoteBox = [
   { "quote": "Tread lightly who lives in hope of pussy.", "by": "Trixie" },
   { "quote": "The bank's founder and president, Chief Officer as well, of air-headed smugness and headlong plunges unawares into the fucking abyss.", "by": "Trixie" },
 
-  { "quote": "Oh I speak French...", "by": "Joanie" },
+  { "quote": "Oh I speak French...", "by": "Joanie Stubbs" },
 
   { "quote": "Don't call me that...", "by": "Dave Payne" }
 ];
@@ -164,7 +164,7 @@ app.get('/bullock', withPing('bullock', (req, res) => {
 }));
 
 app.get('/joanie', withPing('joanie', (req, res) => {
-  respondWithQuote(res, 'Joanie', 'Kayla');
+  respondWithQuote(res, 'Joanie Stubbs', 'Kayla');
 }));
 
 app.get('/trixie', withPing('trixie', (req, res) => {
