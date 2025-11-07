@@ -26,7 +26,6 @@ let pingCount = {
 const quoteBox = [
   { "quote": "I drink what I'm able. If that comes too much, that's the day's affair and the liquor's.", "by": "Calamity Jane" },
   { "quote": "This happens to be a rig and contraption of my own devising against repeated accidental falls which has temporarily malfunctioned.", "by": "Calamity Jane" },
-  { "quote": "If I had that mug on me I believe I’d cut down getting told how butt f***in' ugly I was by not staring at strangers.", "by": "Calamity Jane" },
   { "quote": "I don't drink where I'm the only fucking one with balls.", "by": "Calamity Jane" },
   { "quote": "I won't be a drunk where he's buried, and I can't stay sober.", "by": "Calamity Jane" },
   { "quote": "Every day takes figuring out all over again how to fucking live.", "by": "Calamity Jane" },
@@ -70,9 +69,9 @@ const quoteBox = [
 
   { "quote": "Sayin' questions in that tone and pointin' your finger at me will get you told to fuck yourself.", "by": "Cy Tolliver" },
 
-   { "quote": "Madam, in the chambers of my heart beats a love for every crooked timber of this shitbox of a structure, this building. This building, its warped floorboards and...Why, even in Richardson, my chef, my eyes see a beloved household pet somehow walking upright - see in Richardson a half-witted child, nonetheless adored.", "by": "EB Farnum" },
-   { "quote": "God damned quagmire of piss and bull shit!", "by": "EB Farnum" },
-   { "quote": "Hickok's half-women friend's off somewheres on a tear. The orphan square head's in the widow's care. The widow feels put upon. She's asked me to find her some help. I suggested the gimp.", "by": "EB Farnum" },
+  { "quote": "Madam, in the chambers of my heart beats a love for every crooked timber of this shitbox of a structure, this building. This building, its warped floorboards and...Why, even in Richardson, my chef, my eyes see a beloved household pet somehow walking upright - see in Richardson a half-witted child, nonetheless adored.", "by": "EB Farnum" },
+  { "quote": "God damned quagmire of piss and bull shit!", "by": "EB Farnum" },
+  { "quote": "Hickok's half-women friend's off somewheres on a tear. The orphan square head's in the widow's care. The widow feels put upon. She's asked me to find her some help. I suggested the gimp.", "by": "EB Farnum" },
 
   { "quote": "My bicycle masters boardwalk and quagmire with aplomb. Those that doubt me... suck cock by choice.", "by": "Tom Nuttall" },
 
@@ -96,9 +95,9 @@ app.use((req, res, next) => {
   res.on('finish', () => {
     const duration = Date.now() - start;
 
-    let clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    if (clientIp?.includes(',')) clientIp = clientIp.split(',')[0].trim();
+    let clientIp = req.ip || req.socket.remoteAddress;
     if (clientIp?.startsWith('::ffff:')) clientIp = clientIp.replace('::ffff:', '');
+
 
     const geo = geoip.lookup(clientIp) || {};
     const locationInfo = `${geo.city || 'Unknown City'}, ${geo.region || 'Unknown Region'}, ${geo.country || 'Unknown Country'}`;
