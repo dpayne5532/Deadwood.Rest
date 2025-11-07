@@ -48,12 +48,18 @@ const quoteBox = [
   { "quote": "Yeah, the cut throats and the pigs. But who wants all that blood spilled, judge, huh? Isn't there a simpler way of not pissing off the big vipers?", "by": "Al Swearengen" },
   { "quote": "The direction of my thoughts–with the sustained fucking stupidity that you’re exhibiting, I hesitate to voice them–is that you might want to train for Phil’s former position.", "by": "Al Swearengen" },
   { "quote": "Pain or damage don't end the world. Or despair or fucking beatings. The world ends when you're dead. Until then, you got more punishment in store. Stand it like a man... and give some back.", "by": "Al Swearengen" },
+  { "quote": "If I bleat when I speak it's because I just got fuckin' fleeced.", "by": "Al Swearengen" },
+
+
 
   { "quote": "No law either against me breaking your fucking jaw if you don't quit it.", "by": "Seth Bullock" },
   { "quote": "Every bully I've ever met can't shut his fucking mouth. Except when he's afraid.", "by": "Seth Bullock" },
   { "quote": "You pie-faced cocksucker, get in here and account for your insult.", "by": "Seth Bullock" },
   { "quote": "People angry at their difficulties often act like fucking idiots.", "by": "Seth Bullock" },
   { "quote": "Any more gunplay gets answered. You call the law in Sampson, you don't get to call it off just cause you're liquored up and popular on payday.", "by": "Seth Bullock" },
+
+  { "quote": "When you giggle you leak piss.", "by": "Doc Cochran" },
+  { "quote": "I'd rather be lucky than smart.", "by": "Doc Cochran" },
 
   { "quote": "Sure you wanna quit playing, Jack? The game's always between you and getting called a cunt.", "by": "Wild Bill Hickok" },
   { "quote": "That dropped eye of yours looks like the hood on a cunt to me, Jack. When you talk, your mouth looks like a cunt moving.", "by": "Wild Bill Hickok" },
@@ -64,6 +70,10 @@ const quoteBox = [
 
   { "quote": "Sayin' questions in that tone and pointin' your finger at me will get you told to fuck yourself.", "by": "Cy Tolliver" },
 
+   { "quote": "Madam, in the chambers of my heart beats a love for every crooked timber of this shitbox of a structure, this building. This building, its warped floorboards and...Why, even in Richardson, my chef, my eyes see a beloved household pet somehow walking upright - see in Richardson a half-witted child, nonetheless adored.", "by": "EB Farnum" },
+   { "quote": "God damned quagmire of piss and bull shit!", "by": "EB Farnum" },
+   { "quote": "Hickok's half-women friend's off somewheres on a tear. The orphan square head's in the widow's care. The widow feels put upon. She's asked me to find her some help. I suggested the gimp.", "by": "EB Farnum" },
+
   { "quote": "My bicycle masters boardwalk and quagmire with aplomb. Those that doubt me... suck cock by choice.", "by": "Tom Nuttall" },
 
   { "quote": "Fuck every fuckin' one of you. I wish I was a fuckin' tree.", "by": "Trixie" },
@@ -71,6 +81,7 @@ const quoteBox = [
   { "quote": "The bank's founder and president, Chief Officer as well, of air-headed smugness and headlong plunges unawares into the fucking abyss.", "by": "Trixie" },
 
   { "quote": "Oh I speak French...", "by": "Joanie Stubbs" },
+  { "quote": "I'll just be here in my girl's world, diddling myself", "by": "Joanie Stubbs" },
 
   { "quote": "Don't call me that...", "by": "Dave Payne" }
 ];
@@ -171,8 +182,16 @@ app.get('/trixie', withPing('trixie', (req, res) => {
   respondWithQuote(res, 'Trixie', 'Kayla');
 }));
 
+app.get('/doc', withPing('trixie', (req, res) => {
+  respondWithQuote(res, 'Doc Cochran', 'Kayla');
+}));
+
 app.get('/wu', withPing('wu', (req, res) => {
   respondWithQuote(res, 'Mr. Wu', 'Kayla');
+}));
+
+app.get('/eb', withPing('wu', (req, res) => {
+  respondWithQuote(res, 'EB Farnum', 'Kayla');
 }));
 
 app.get('/wildbill', withPing('wildbill', (req, res) => {
