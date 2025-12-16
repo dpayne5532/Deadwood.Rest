@@ -82,6 +82,8 @@ const quoteBox = [
   { "quote": "Oh I speak French...", "by": "Joanie Stubbs" },
   { "quote": "I'll just be here in my girl's world, diddling myself", "by": "Joanie Stubbs" },
 
+  { "quote": "I am a sinner who does not expect forgiveness, but I am not a government official.", "by": "Francis Wolcott"},
+
   { "quote": "Don't call me that...", "by": "Dave Payne" }
 ];
 
