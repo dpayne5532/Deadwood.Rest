@@ -178,7 +178,7 @@ app.get('/bullock', withPing('bullock', (req, res) => {
 app.get('/bullock', withPing('wolcott', (req, res) => {
   respondWithQuote(res, 'Francis Wolcott', 'Kayla');
 }));
-ß
+
 app.get('/joanie', withPing('joanie', (req, res) => {
   respondWithQuote(res, 'Joanie Stubbs', 'Kayla');
 }));
